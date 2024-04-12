@@ -16,6 +16,6 @@
     "@types/recoil": "^0.0.9"
   },
   "exports": {
-    "./useBalance": "./src/hooks/useBalance"
+    "./useBalance": "./src/hooks/useBalance.ts"
   }
 }

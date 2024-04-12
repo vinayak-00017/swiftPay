@@ -6,6 +6,11 @@
   },
   "dependencies": {
     "@prisma/client": "^5.12.1",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
     "prisma": "^5.12.1"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }
