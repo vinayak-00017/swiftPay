@@ -4,6 +4,7 @@ import { Card } from '@repo/ui/Card'
 import TextInput from '@repo/ui/TextInput'
 import { Button } from '@repo/ui/button'
 import React, { useState } from 'react'
+import { p2pTransfer } from '../lib/actions/p2pTransfer'
 
 const SendCard = () => {
 
@@ -11,7 +12,6 @@ const SendCard = () => {
     const [amount, setAmount] = useState(0)
 
   return (
-    <div className='flex justify-center items-center h-[90vh] w-[80vw]'>
         <Card title='Send'>
             <div >
                 <TextInput
@@ -27,13 +27,14 @@ const SendCard = () => {
             </div>
             <div className='flex justify-center pt-4'>
                 <Button
-                    onClick={()=>{}}
+                    onClick={async()=>{
+                        await p2pTransfer(number, Number(amount) * 100 )
+                    }}
                 >
                     Send
                 </Button>
             </div>
         </Card>
-    </div>
   )
 }
 

@@ -4,12 +4,24 @@ import db from "@repo/db/client"
 const app = express();
 app.use(express.json())
 
-app.post("/hdfcWebhook", (req, res) => {
+app.post("/hdfcWebhook", async(req, res) => {
     const paymentInformation = {
         token: req.body.token,
         userId: req.body.user_identifier,
         amount: req.body.amount
     };
+
+    const txn = await db.onRampTransaction.findUnique({
+        where: {
+            token: paymentInformation.token
+        }
+    }) 
+
+    if (txn?.status != "Processing"){
+        return res.json({
+            message: "Payment already processed"
+        })
+    }
 
     try {
         db.$transaction([
