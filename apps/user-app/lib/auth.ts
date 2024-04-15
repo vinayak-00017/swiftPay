@@ -61,19 +61,3 @@ export const authOptions = {
     }
 }
 
-
-interface Credentials{
-    phone: string,
-    password: string
-}
-
-interface Token{
-    sub: string;
-}
-
-interface Session {
-    user: {
-        id: string,
-    };
-}
-
