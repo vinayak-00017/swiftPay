@@ -47,3 +47,4 @@ const AddMoneyCard = () => {
 }
 
 export default AddMoneyCard
+
