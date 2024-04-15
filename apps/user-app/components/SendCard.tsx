@@ -5,13 +5,17 @@ import TextInput from '@repo/ui/TextInput'
 import { Button } from '@repo/ui/button'
 import React, { useState } from 'react'
 import { p2pTransfer } from '../lib/actions/p2pTransfer'
+import { useRouter } from 'next/navigation'
+
 
 const SendCard = () => {
 
     const [number, setNumber] = useState('')
     const [amount, setAmount] = useState(0)
+    const router = useRouter()
 
   return (
+    <section className=' flex justify-center'>
         <Card title='Send'>
             <div >
                 <TextInput
@@ -29,12 +33,14 @@ const SendCard = () => {
                 <Button
                     onClick={async()=>{
                         await p2pTransfer(number, Number(amount) * 100 )
+                        router.refresh()
                     }}
                 >
                     Send
                 </Button>
             </div>
         </Card>
+    </section>
   )
 }
 
