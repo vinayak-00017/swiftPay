@@ -28,3 +28,15 @@ jobs:
 
       - name: Verify Pushed Image
         run: docker pull vinayak00017/swift_pay:latest
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo docker pull vinayak00017/swift_pay:latest
+            sudo docker stop swift_pay || true
+            sudo docker rm swift_pay || true
+            sudo docker run -d --name swift_pay -p 3005:3000 vinayak/swift_pay:latest
