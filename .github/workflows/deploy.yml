@@ -39,4 +39,4 @@ jobs:
             sudo docker pull vinayak00017/swift_pay:latest
             sudo docker stop swift_pay || true
             sudo docker rm swift_pay || true
-            sudo docker run -d --name swift_pay -p 3005:3001 -e DATABASE_URL=${{secrets.DATABASE_URL}} vinayak00017/swift_pay:latest
+            sudo docker run -d --name swift_pay -p 3005:3001 -e DATABASE_URL=${{secrets.DATABASE_URL}} NEXTAUTH_URL=${{secrets.NEXTAUTH_URL}} JWT_SECRET=${{secrets.JWT_SECRET}} vinayak00017/swift_pay:latest
